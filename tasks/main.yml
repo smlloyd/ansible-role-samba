@@ -1,0 +1,17 @@
+---
+# tasks file for samba
+
+- name: Ensure required packages are installed
+  package:
+    name: "{{ samba_packages }}"
+    state: present
+
+- name: Manage samba configuration
+  template:
+    src: "smb.conf.j2"
+    dest: "{{ samba_config }}"
+    mode: 0644
+    owner: root
+    group: root
+  notify:
+    - restart samba

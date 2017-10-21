@@ -1,0 +1,10 @@
+---
+# handlers file for samba
+
+- name: restart samba
+  service:
+    name: "{{ item }}"
+    enabled: yes
+    state: restarted
+  with_items: "{{ samba_services }}"
+  ignore_errors: true

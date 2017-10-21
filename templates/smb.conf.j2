@@ -1,0 +1,34 @@
+[global]
+workgroup = {{ samba_workgroup }}
+server string = Samba Server Version %v
+
+# Add the IPs / subnets allowed acces to the server in general.
+hosts allow = {{ samba_hosts_allow }}
+
+# log files split per-machine:
+log file = /var/log/samba/log.%m
+# enable the following line to debug:
+# log level =3
+# maximum size of 50KB per log file, then rotate:
+max log size = 50
+
+# Not interested in printers
+load printers = no
+cups options = raw
+
+# This stops an annoying message from appearing in logs
+printcap name = /dev/null
+
+{% if samba_extra_parameters is defined %}
+{{ samba_extra_parameters }}
+{% endif %}
+
+{% if samba_shares is defined %}
+{% for share in samba_shares %}
+[{{ share.name }}]
+path = {{ share.path }}
+{% if share.extra_parameters is defined %}
+{{ share.extra_parameters }}
+{% endif %}
+{% endfor %}
+{% endif %}
