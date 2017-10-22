@@ -29,7 +29,7 @@ printcap name = /dev/null
 [{{ share.name }}]
 path = {{ share.path }}
 {% if share.extra_parameters is defined %}
-{{ share.extra_parameters }}
+  {{ share.extra_parameters|indent(0) }}
 {% endif %}
 {% endfor %}
 {% endif %}
