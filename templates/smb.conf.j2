@@ -21,7 +21,7 @@ cups options = raw
 printcap name = /dev/null
 
 {% if samba_extra_parameters is defined %}
-{{ samba_extra_parameters|indent(0) }}
+{{ samba_extra_parameters }}
 {% endif %}
 
 {% if samba_shares is defined %}
@@ -29,7 +29,7 @@ printcap name = /dev/null
 [{{ share.name }}]
 path = {{ share.path }}
 {% if share.extra_parameters is defined %}
-{{ share.extra_parameters|indent(0) }}
+{{ share.extra_parameters }}
 {% endif %}
 {% endfor %}
 {% endif %}
