@@ -1,6 +1,14 @@
 ---
 # tasks file for samba
 
+- name: Gather os specific variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+    - "{{ ansible_distribution }}.yml"
+    - "{{ ansible_os_family }}.yml"
+  tags: vars
+
 - name: Ensure required packages are installed
   package:
     name: "{{ samba_packages }}"

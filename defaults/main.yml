@@ -1,26 +1,4 @@
 ---
 # defaults file for samba
-#
-# distribution specific variabes
-#
-_dist_vars:
-  Ubuntu:
-    packages:
-     - samba
-    services:
-     - smbd
-     - nmbd
-    config: /etc/samba/smb.conf
-
-#
-# Merge 
-#
-samba_packages: "{{ _dist_vars[ansible_distribution]['packages'] }}"
-samba_services: "{{ _dist_vars[ansible_distribution]['services'] }}"
-samba_config: "{{ _dist_vars[ansible_distribution]['config'] }}"
-
-#
-# Default values below should be changed when using role
-#
 samba_workgroup: WORKGROUP
 samba_hosts_allow: 127. 10.
