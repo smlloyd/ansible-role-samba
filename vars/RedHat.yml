@@ -1,0 +1,7 @@
+---
+samba_packages:
+  - samba
+samba_services:
+  - smb
+  - nmb
+samba_config: /etc/samba/smb.conf
